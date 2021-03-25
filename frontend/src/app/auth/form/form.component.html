@@ -1,0 +1,11 @@
+<header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <div class="flex-grow-1 float-right" *ngIf="!isCheck">
+            <a routerLink="/sign-up" class="float-right signup mr-2">Đăng ký</a>
+            <a routerLink="/login" class="float-right login mr-2">Đăng Nhập</a>
+        </div>
+        <div class="flex-grow-1 float-right" *ngIf="isCheck">
+            <button class="float-right login mr-2" (click)="logout()">Đăng xuất</button>
+        </div>
+    </nav>
+</header>

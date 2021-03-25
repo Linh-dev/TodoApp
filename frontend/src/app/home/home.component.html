@@ -1,0 +1,67 @@
+<!-- todo header -->
+<div class="todo-wrapper p-0 d-flex flex-column clo-md-6 clo-sm-8">
+    <div class="d-flex align-items-center h-100">
+        <span class="icon-wrapper h-100 text-center">
+      <i class="eva eva-chevron-down" (click)="allChoose()"></i>
+    </span>
+        <form [formGroup]="newTodoForm" (ngSubmit)="addTodo()">
+            <input [formControlName]="'newTodo'" type="text" class="w-100 h-100" id="newTodo" placeholder="Công việc cần thực hiện?" />
+        </form>
+    </div>
+    <div>
+        <form class="updateForm" [formGroup]="updateTodoForm" (ngSubmit)="updateTodo()" [hidden]="!isEditing">
+            <input [formControlName]="'updateTodo'" type="text" id="updateTodo" [(ngModel)]="titleTodo" />
+        </form>
+    </div>
+
+    <!-- todo body -->
+
+    <ul *ngFor="let todo of todoResponses">
+        <div class="todo-item d-flex justify-content-between align-items-center" (mouseover)="isHovered = true" (mouseout)="isHovered = false">
+            <label [@dashComplete]="todo.completed ? 'completed': 'active'" class="container" [for]="todo.id">{{ todo.title }}
+        <input
+          type="checkbox"
+          [id]="todo.id"
+          [ngClass]="{ checked: todo.completed }"
+          [checked]="todo.completed"
+          (change)="changeStatus(todo.id)"
+        />
+
+        <span class="checkmark" [for]="todo.id"></span>
+      </label>
+
+            <div class="d-flex align-items-center">
+                <span class="icon-wrapper text-center edit" [ngClass]="{ active: isHovered }">
+          <i
+            class="eva eva-edit-outline"
+            [hidden]="todo.completed"
+            (click)="editForm(todo.id, todo.title)"
+          >
+          </i>
+        </span>
+                <span class="icon-wrapper text-center" [ngClass]="{ active: isHovered }">
+          <i class="eva eva-close" (click)="deleteTodo(todo.id)"> </i>
+        </span>
+            </div>
+        </div>
+    </ul>
+
+    <!-- todo footer -->
+
+    <div class="footer">
+        <div class="h-100 position-absolute d-flex justify-content-between align-items-center" style="top: 0; bottom: 0; left: 0; right: 0">
+            <span class="items-count">
+        {{ length }} việc
+      </span>
+            <div>
+                <button type="button" class="filter-btn" [ngClass]="{active: isAll}" (click)="getAll1()">Tất cả</button>
+                <button type="button" class="filter-btn" [ngClass]="{active: isActive}" (click)="getActive()">Chưa song</button>
+                <button type="button" class="filter-btn" [ngClass]="{active: isCompleted}" (click)="getCompleted()">Đã song</button>
+            </div>
+            <button class="filter-btn clear-completed-btn" (click)="deleteCompleted()">Rút gọn</button>
+        </div>
+    </div>
+    <small class="instruction text-center">
+      <em >Nhấp enter để nhập</em><br><br>
+    </small>
+</div>

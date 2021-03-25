@@ -1,0 +1,236 @@
+.wrapper {
+    & .title {
+        color: rgba(175, 47, 47, 0.15);
+        font-size: 120px;
+        padding: 30px 0;
+        font-weight: 100px;
+    }
+    & .instruction {
+        color: #bfbfbf;
+        padding: 30px 0;
+        margin-top: auto;
+    }
+    & .todo-wrapper {
+        width: 50%;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+        background: white;
+        & app-header {
+            height: 40px;
+            padding: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+
+.updateForm {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    border: 1px solid greenyellow;
+}
+
+.icon-wrapper {
+    width: 40px;
+    line-height: 45px;
+    font-size: 45px;
+    color: rgba(105, 80, 80, 0.342);
+    background: white;
+    transition: 250ms all ease-in-out;
+    cursor: pointer;
+    &:hover {
+        color: black;
+    }
+    app-todo-input {
+        width: 100%;
+    }
+}
+
+input {
+    outline: none;
+    border: none;
+    margin-left: 10px;
+    font-size: 30px;
+}
+
+::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+    opacity: 0.5;
+}
+
+.footer {
+    position: relative;
+    height: 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    &:before {
+        content: "";
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 50px;
+        overflow: hidden;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+    }
+    & .filter-btn {
+        padding: 5px;
+        border-radius: 0.25rem;
+        transition: 250ms all ease-in-out;
+        outline: none;
+        cursor: pointer;
+        margin-right: 5px;
+        background: white;
+        border: 1px solid white;
+        &:hover,
+        &.active {
+            border-color: burlywood;
+        }
+    }
+    & .clear-completed-btn {
+        visibility: visible;
+        &.visible {
+            visibility: visible;
+        }
+    }
+    & .items-count {
+        padding-left: 10px;
+    }
+}
+
+// .filter-btn:active {
+//     border: 1px solid red;
+// }
+.todo-item {
+    min-height: 50px;
+    padding: 0 50px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+    & .todo {
+        position: relative;
+        cursor: pointer;
+        font-size: 18px;
+        user-select: none;
+        & .toggle {
+            width: 40px;
+            height: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+            border: none;
+            outline: none;
+            appearance: none;
+        }
+        & .toggle+label {
+            background-image: url();
+            background-repeat: no-repeat;
+            background-position: center left;
+        }
+        & .toggle.checked+label {
+            background-image: url();
+        }
+        & .label {
+            word-break: break-all;
+            padding: 15px 15px 15px 60px;
+            display: block;
+        }
+    }
+    & .icon-wrapper {
+        height: 25px;
+        width: 25px;
+        font-size: 25px;
+        color: white;
+        background: white;
+        transition: 250ms all ease-in-out;
+        &:hover {
+            transform: scale(1.2, 1.2);
+            color: rgba(247, 78, 48);
+        }
+        &.active {
+            color: tomato;
+            cursor: pointer;
+        }
+        & .edit {
+            &:hover {
+                transform: scale(1.2, 1.2);
+                color: rgba(0, 162, 255);
+            }
+            &.active {
+                color: deepskyblue;
+                cursor: pointer;
+            }
+        }
+    }
+    & .edit-form {
+        position: absolute;
+        width: 92%;
+        height: 100%;
+        background: white;
+        & input {
+            height: 92%;
+            width: 80%;
+            margin-left: 35px;
+            font-size: 18px;
+            padding-left: 10px;
+        }
+    }
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+.container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+.container input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
